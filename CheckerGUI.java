@@ -124,22 +124,8 @@ public class CheckerGUI extends JFrame implements ActionListener{
 
         super("Checkers");
 
-	//long names mess up the way the GUI displays
-	//this code shortens the name if it is too long
-        String nameOne="", nameTwo="";
-        if(name1.length() > 7 ){
-            nameOne = name1.substring(0,7);
-        }else{
-            nameOne = name1;
-        }
-        if(name2.length() > 7 ){
-            nameTwo = name2.substring(0,7);
-        }else{
-            nameTwo = name2;
-        }
-                
-        playerOnesName = nameOne;
-        playerTwosName = nameTwo;
+        playerOnesName = trimName(name1);
+        playerTwosName = trimName(name2);
         theFacade = facade;
         register();
         
@@ -147,6 +133,16 @@ public class CheckerGUI extends JFrame implements ActionListener{
         pack ();
         update();
         //updateTime();
+    }
+
+    private String trimName(String name) {
+        //long names mess up the way the GUI displays
+        //this code shortens the name if it is too long
+        if(name.length() > 7 ){
+            return name.substring(0,7);
+        }else{
+            return name;
+        }
     }
     
     
