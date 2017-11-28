@@ -34,7 +34,8 @@ public class CheckerGUI extends JFrame implements ActionListener{
     private static Facade theFacade; //the facade
     private Vector possibleSquares = new Vector();//a vector of the squares
     private int timeRemaining;//the time remaining
-    
+
+    private JButton[] jButtons;
     private JButton jButton1;
     private JButton jButton2;
     private JButton jButton3;
@@ -161,7 +162,15 @@ public class CheckerGUI extends JFrame implements ActionListener{
          
         }
     }
-    
+
+    private Vector addButtons(JButton[] buttons) {
+        Vector vector = new Vector();
+        for(JButton b : buttons) {
+            vector.add(b);
+        }
+        return vector;
+    }
+
     /**
      * This method is called from within the constructor to
      * initialize the form. It initializes the components
@@ -171,260 +180,266 @@ public class CheckerGUI extends JFrame implements ActionListener{
      */
     private void initComponents() {
         
-	this.setResizable( false );
-	
+	    this.setResizable( false );
+        jButtons = new JButton[64];
+        for(JButton b : jButtons) {
+            b.addActionListener(this);
+        }
+	    possibleSquares = addButtons(jButtons);
+
+
         jButton1 = new JButton( );
         possibleSquares.add(jButton1);
         jButton1.addActionListener( this );
-				
-        jButton2 = new JButton(); 
+
+        jButton2 = new JButton();
 	possibleSquares.add(jButton2);
         jButton2.addActionListener( this );
-	
+
         jButton3 = new JButton();
 	possibleSquares.add(jButton3);
         jButton3.addActionListener( this );
-	
+
         jButton4 = new JButton();
 	possibleSquares.add(jButton4);
         jButton4.addActionListener( this );
-	
+
         jButton5 = new JButton();
 	possibleSquares.add(jButton5);
         jButton5.addActionListener( this );
-	
+
 	jButton6 = new JButton();
 	possibleSquares.add(jButton6);
         jButton6.addActionListener( this );
-        
+
 	jButton7 = new JButton();
 	possibleSquares.add(jButton7);
         jButton7.addActionListener( this );
-	
+
         jButton8 = new JButton();
 	possibleSquares.add(jButton8);
         jButton8.addActionListener( this );
-	
+
         jButton9 = new JButton();
 	possibleSquares.add(jButton9);
         jButton9.addActionListener( this );
-	
+
         jButton10 = new JButton();
 	possibleSquares.add(jButton10);
         jButton10.addActionListener( this );
-	
+
         jButton11 = new JButton();
 	possibleSquares.add(jButton11);
         jButton11.addActionListener( this );
-	
+
         jButton12 = new JButton();
 	possibleSquares.add(jButton12);
         jButton12.addActionListener( this );
-	
+
         jButton13 = new JButton();
 	possibleSquares.add(jButton13);
         jButton13.addActionListener( this );
-	
+
         jButton14 = new JButton();
 	possibleSquares.add(jButton14);
         jButton14.addActionListener( this );
-	
+
         jButton15 = new JButton();
 	possibleSquares.add(jButton15);
         jButton15.addActionListener( this );
-	
+
         jButton16 = new JButton();
 	possibleSquares.add(jButton16);
         jButton16.addActionListener( this );
-	
+
         jButton17 = new JButton();
 	possibleSquares.add(jButton17);
         jButton17.addActionListener( this );
-	
+
         jButton18 = new JButton();
 	possibleSquares.add(jButton18);
         jButton18.addActionListener( this );
-	
+
         jButton19 = new JButton();
 	possibleSquares.add(jButton19);
         jButton19.addActionListener( this );
-	
+
         jButton20 = new JButton();
 	possibleSquares.add(jButton20);
         jButton20.addActionListener( this );
-	
+
         jButton21 = new JButton();
 	possibleSquares.add(jButton21);
         jButton21.addActionListener( this );
-	
+
         jButton22 = new JButton();
 	possibleSquares.add(jButton22);
         jButton22.addActionListener( this );
-	
+
         jButton23 = new JButton();
 	possibleSquares.add(jButton23);
         jButton23.addActionListener( this );
-	
+
         jButton24 = new JButton();
 	possibleSquares.add(jButton24);
         jButton24.addActionListener( this );
-	
+
         jButton25 = new JButton();
 	possibleSquares.add(jButton25);
         jButton25.addActionListener( this );
-	
+
         jButton26 = new JButton();
 	possibleSquares.add(jButton26);
         jButton26.addActionListener( this );
-	
+
         jButton27 = new JButton();
 	possibleSquares.add(jButton27);
         jButton27.addActionListener( this );
-	
+
         jButton28 = new JButton();
 	possibleSquares.add(jButton28);
         jButton28.addActionListener( this );
-	
+
         jButton29 = new JButton();
 	possibleSquares.add(jButton29);
         jButton29.addActionListener( this );
-        
+
 	jButton30 = new JButton();
 	possibleSquares.add(jButton30);
         jButton30.addActionListener( this );
-        
+
 	jButton31 = new JButton();
 	possibleSquares.add(jButton31);
         jButton31.addActionListener( this );
-        
+
 	jButton32 = new JButton();
 	possibleSquares.add(jButton32);
         jButton32.addActionListener( this );
-        
+
 	jButton33 = new JButton();
 	possibleSquares.add(jButton33);
         jButton33.addActionListener( this );
-        
+
 	jButton34 = new JButton();
 	possibleSquares.add(jButton34);
         jButton34.addActionListener( this );
-	
+
         jButton35 = new JButton();
 	possibleSquares.add(jButton35);
         jButton35.addActionListener( this );
-        
+
 	jButton36 = new JButton();
 	possibleSquares.add(jButton36);
         jButton36.addActionListener( this );
-        
+
 	jButton37 = new JButton();
 	possibleSquares.add(jButton37);
         jButton37.addActionListener( this );
-        
+
 	jButton38 = new JButton();
 	possibleSquares.add(jButton38);
         jButton38.addActionListener( this );
-        
+
 	jButton39 = new JButton();
 	possibleSquares.add(jButton39);
         jButton39.addActionListener( this );
-        
+
 	jButton40 = new JButton();
 	possibleSquares.add(jButton40);
         jButton40.addActionListener( this );
-        
+
 	jButton41 = new JButton();
 	possibleSquares.add(jButton41);
         jButton41.addActionListener( this );
-        
+
 	jButton42 = new JButton();
 	possibleSquares.add(jButton42);
         jButton42.addActionListener( this );
-        
+
 	jButton43 = new JButton();
 	possibleSquares.add(jButton43);
         jButton43.addActionListener( this );
-        
+
 	jButton44 = new JButton();
 	possibleSquares.add(jButton44);
         jButton44.addActionListener( this );
-        
+
 	jButton45 = new JButton();
 	possibleSquares.add(jButton45);
         jButton45.addActionListener( this );
-        
+
 	jButton46 = new JButton();
 	possibleSquares.add(jButton46);
         jButton46.addActionListener( this );
-        
+
 	jButton47 = new JButton();
 	possibleSquares.add(jButton47);
         jButton47.addActionListener( this );
-	
+
 	jButton48 = new JButton();
 	possibleSquares.add(jButton48);
         jButton48.addActionListener( this );
-        
+
 	jButton49 = new JButton();
 	possibleSquares.add(jButton49);
         jButton49.addActionListener( this );
-        
+
 	jButton50 = new JButton();
 	possibleSquares.add(jButton50);
         jButton50.addActionListener( this );
-        
+
 	jButton51 = new JButton();
 	possibleSquares.add(jButton51);
         jButton51.addActionListener( this );
-        
+
 	jButton52 = new JButton();
 	possibleSquares.add(jButton52);
         jButton52.addActionListener( this );
-        
+
 	jButton53 = new JButton();
 	possibleSquares.add(jButton53);
         jButton53.addActionListener( this );
-        
+
 	jButton54 = new JButton();
 	possibleSquares.add(jButton54);
         jButton54.addActionListener( this );
-        
+
 	jButton55 = new JButton();
 	possibleSquares.add(jButton55);
         jButton55.addActionListener( this );
-	
+
         jButton56 = new JButton();
 	possibleSquares.add(jButton56);
         jButton56.addActionListener( this );
-	
+
         jButton57 = new JButton();
 	possibleSquares.add(jButton57);
         jButton57.addActionListener( this );
-	
+
         jButton58 = new JButton();
 	possibleSquares.add(jButton58);
         jButton58.addActionListener( this );
-	
+
         jButton59 = new JButton();
 	possibleSquares.add(jButton59);
         jButton59.addActionListener( this );
-	
+
         jButton60 = new JButton();
 	possibleSquares.add(jButton60);
         jButton60.addActionListener( this );
-	
+
         jButton61 = new JButton();
 	possibleSquares.add(jButton61);
         jButton61.addActionListener( this );
-        
+
 	jButton62 = new JButton();
 	possibleSquares.add(jButton62);
         jButton62.addActionListener( this );
-        
+
 	jButton63 = new JButton();
 	possibleSquares.add(jButton63);
         jButton63.addActionListener( this );
-	
+
         jButton64 = new JButton();
 	possibleSquares.add(jButton64);
         jButton64.addActionListener( this );
