@@ -171,6 +171,17 @@ public class CheckerGUI extends JFrame implements ActionListener{
         return vector;
     }
 
+    private JButton[] jAddActionListeners() {
+        JButton[] arr = new JButton[64];
+        int i = 0;
+        for(JButton b : arr) {
+            arr[i] = new JButton();
+            arr[i].addActionListener(this);
+            i++;
+        }
+        return arr;
+    }
+
     /**
      * This method is called from within the constructor to
      * initialize the form. It initializes the components
@@ -181,11 +192,8 @@ public class CheckerGUI extends JFrame implements ActionListener{
     private void initComponents() {
         
 	    this.setResizable( false );
-        jButtons = new JButton[64];
-        for(JButton b : jButtons) {
-            b.addActionListener(this);
-        }
-	    possibleSquares = addButtons(jButtons);
+        jButtons = jAddActionListeners();
+	    //possibleSquares = addButtons(jButtons);
 
 
         jButton1 = new JButton( );
