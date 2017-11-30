@@ -34,7 +34,8 @@ public class CheckerGUI extends JFrame implements ActionListener {
     private JLabel PlayerOneLabel, PlayerTwoLabel, timeRemainingLabel, secondsLeftLabel, warningLabel, whosTurnLabel;
     private JButton ResignButton, DrawButton;
     private GridBagConstraints gridBagConstraints;
-    private static String playerOnesName = "", playerTwosName = "", timeLeft = "";
+    private static String playerOnesName = "";
+    private static String playerTwosName = "";
 
     /**
      * Constructor, creates the GUI and all its components
@@ -43,7 +44,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
      * @param name1  the first players name
      * @param name2  the second players name
      */
-    public CheckerGUI(Facade facade, String name1, String name2) {
+    CheckerGUI(Facade facade, String name1, String name2) {
         super("Checkers");
 
         playerOnesName = trimName(name1);
@@ -113,7 +114,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
         getContentPane().setLayout(new GridBagLayout());
         addWindowListener(new WindowAdapter() {
                               public void windowClosing(WindowEvent evt) {
-                                  exitForm(evt);
+                                  exitForm();
                               }
                           }
         );
@@ -125,19 +126,15 @@ public class CheckerGUI extends JFrame implements ActionListener {
     }
 
     private void jAddActionListeners() {
-        int i = 0;
-        for (JButton b : jButtons) {
+        for (int i = 0; i < jButtons.length; i++) {
             jButtons[i] = new JButton();
             jButtons[i].addActionListener(this);
-            i++;
         }
     }
 
     private Vector addButtons(JButton[] buttons) {
         Vector vector = new Vector();
-        for (JButton b : buttons) {
-            vector.add(b);
-        }
+        vector.addAll(Arrays.asList(buttons));
         return vector;
     }
 
@@ -198,6 +195,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
         timeRemainingLabel.setText("Time Remaining:");
         timeRemainingLabel.setForeground(Color.black);
 
+        String timeLeft = "";
         secondsLeftLabel.setText(timeLeft + " sec.");
         secondsLeftLabel.setForeground(Color.black);
 
@@ -234,9 +232,8 @@ public class CheckerGUI extends JFrame implements ActionListener {
     /**
      * Exit the Application
      *
-     * @param evt - the window event
      */
-    private void exitForm(java.awt.event.WindowEvent evt) {
+    private void exitForm() {
         theFacade.pressQuit();
     }
 
@@ -299,11 +296,11 @@ public class CheckerGUI extends JFrame implements ActionListener {
             } else if (e.getSource().equals(theFacade)) {
 
                 //if its a player switch event
-                if ((e.getActionCommand()).equals(theFacade.playerSwitch)) {
+                if ((e.getActionCommand()).equals(Facade.playerSwitch)) {
                     //set a new time
                     timeRemaining = theFacade.getTimer();
                     //if it is an update event
-                } else if ((e.getActionCommand()).equals(theFacade.update)) {
+                } else if ((e.getActionCommand()).equals(Facade.update)) {
                     //update the GUI
                     update();
                 } else {
@@ -336,7 +333,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
         //the board to read information from
         Board board = theFacade.stateOfBoard();
         //a temp button to work with
-        JButton temp = new JButton();
+        JButton temp;
 
         //go through the board
         for (int i = 1; i < board.sizeOf(); i++) {
@@ -347,7 +344,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
                 if (board.colorAt(i) == Color.blue) {
 
                     //if there is a  single piece there
-                    if ((board.getPieceAt(i)).getType() == board.SINGLE) {
+                    if ((board.getPieceAt(i)).getType() == Board.SINGLE) {
 
                         //show a blue single piece in that spot board
                         temp = (JButton) possibleSquares.get(i);
@@ -361,7 +358,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
                         }
 
                         //if there is a kinged piece there
-                    } else if ((board.getPieceAt(i)).getType() == board.KING) {
+                    } else if ((board.getPieceAt(i)).getType() == Board.KING) {
 
                         //show a blue king piece in that spot board
                         temp = (JButton) possibleSquares.get(i);
@@ -379,7 +376,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
                 } else if (board.colorAt(i) == Color.white) {
 
                     //if there is a single piece there
-                    if ((board.getPieceAt(i)).getType() == board.SINGLE) {
+                    if ((board.getPieceAt(i)).getType() == Board.SINGLE) {
 
                         //show a blue single piece in that spot board
                         temp = (JButton) possibleSquares.get(i);
@@ -392,7 +389,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
                         }
 
                         //if there is a kinged piece there
-                    } else if ((board.getPieceAt(i)).getType() == board.KING) {
+                    } else if ((board.getPieceAt(i)).getType() == Board.KING) {
 
                         //show a blue king piece in that spot board
                         temp = (JButton) possibleSquares.get(i);
@@ -463,7 +460,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
      * true if the game should end
      * false if game needs to continue
      */
-    public boolean checkEndConditions() {
+    private boolean checkEndConditions() {
         //the return value
         boolean retVal = false;
         try {
