@@ -43,6 +43,7 @@ public class CheckerGUI extends JFrame implements ActionListener{
     private JButton ResignButton;
     private JButton DrawButton;
     private JLabel warningLabel, whosTurnLabel;
+    private GridBagConstraints gridBagConstraints;
     
     //the names and time left
     private static String playerOnesName="", playerTwosName="", timeLeft="";
@@ -107,8 +108,6 @@ public class CheckerGUI extends JFrame implements ActionListener{
      *
      */
     private void initComponents() {
-        
-
         jButtons = new JButton[64];
 
         PlayerOneLabel = new JLabel();
@@ -126,14 +125,23 @@ public class CheckerGUI extends JFrame implements ActionListener{
         DrawButton.addActionListener( this );
 
         initGrid();
-        }
+    }
 
-    private Vector addButtons(JButton[] buttons) {
-        Vector vector = new Vector();
-        for(JButton b : buttons) {
-            vector.add(b);
-        }
-        return vector;
+    private void initGrid() {
+        this.setResizable( false );
+        jButtons = jAddActionListeners();
+        possibleSquares = addButtons(jButtons);
+
+        //sets the layout and adds listener for closing window
+        getContentPane().setLayout(new GridBagLayout());
+        addWindowListener(new WindowAdapter()
+                          { public void windowClosing(WindowEvent evt) { exitForm(evt); } }
+        );
+
+        populateCheckerboard();
+        addPlayerNames();
+        addLabels();
+        addMiscButtons();
     }
 
     private JButton[] jAddActionListeners() {
@@ -147,20 +155,16 @@ public class CheckerGUI extends JFrame implements ActionListener{
         return arr;
     }
 
-    private void initGrid() {
-        this.setResizable( false );
-        jButtons = jAddActionListeners();
-        possibleSquares = addButtons(jButtons);
+    private Vector addButtons(JButton[] buttons) {
+        Vector vector = new Vector();
+        for(JButton b : buttons) {
+            vector.add(b);
+        }
+        return vector;
+    }
 
-        //sets the layout and adds listener for closing window
-        getContentPane().setLayout(new GridBagLayout());
-        GridBagConstraints gridBagConstraints;
-
-        //add window listener
-        addWindowListener(new WindowAdapter()
-                          { public void windowClosing(WindowEvent evt) { exitForm(evt); } }
-        );
-
+    private void populateCheckerboard() {
+        gridBagConstraints = new java.awt.GridBagConstraints();
         int i = 0;
         int wb = 0;
         for(int y = 1; y < 9; y ++){
@@ -175,7 +179,6 @@ public class CheckerGUI extends JFrame implements ActionListener{
                     jButtons[i].setBackground( new Color(204, 204, 153));
                     wb--;
                 }
-                gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = x;
                 gridBagConstraints.gridy = y;
                 getContentPane().add(jButtons[i], gridBagConstraints);
@@ -184,6 +187,10 @@ public class CheckerGUI extends JFrame implements ActionListener{
             if(wb==0) wb++;
             else if(wb==1) wb--;
         }
+    }
+
+    private void addPlayerNames() {
+        gridBagConstraints = new java.awt.GridBagConstraints();
 
         PlayerOneLabel.setText("Player 1:     " + playerOnesName );
         PlayerOneLabel.setForeground( Color.black );
@@ -191,61 +198,58 @@ public class CheckerGUI extends JFrame implements ActionListener{
         PlayerTwoLabel.setText("Player 2:     " + playerTwosName );
         PlayerTwoLabel.setForeground( Color.black );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 4;
         getContentPane().add(PlayerTwoLabel, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 4;
         getContentPane().add(PlayerOneLabel, gridBagConstraints);
+    }
+
+    private void addLabels() {
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx=8;
+        gridBagConstraints.gridy=1;
+        gridBagConstraints.gridwidth = 4;
 
         whosTurnLabel.setText("");
         whosTurnLabel.setForeground( new Color( 0, 100 , 0 ) );
 
-        gridBagConstraints.gridx=8;
-        gridBagConstraints.gridy=1;
-        getContentPane().add(whosTurnLabel, gridBagConstraints );
-
         warningLabel.setText( "" );
         warningLabel.setForeground( Color.red );
-
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add( warningLabel, gridBagConstraints );
 
         timeRemainingLabel.setText("Time Remaining:");
         timeRemainingLabel.setForeground( Color.black );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 3;
-        getContentPane().add(timeRemainingLabel, gridBagConstraints);
-
         secondsLeftLabel.setText( timeLeft + " sec.");
         secondsLeftLabel.setForeground( Color.black );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
+        getContentPane().add(whosTurnLabel, gridBagConstraints );
+
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(warningLabel, gridBagConstraints );
+
+        gridBagConstraints.gridwidth = 1;
+        gridBagConstraints.gridy = 3;
+        getContentPane().add(timeRemainingLabel, gridBagConstraints);
+
         gridBagConstraints.gridy = 4;
         getContentPane().add(secondsLeftLabel, gridBagConstraints);
+    }
+
+    private void addMiscButtons() {
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
 
         ResignButton.setActionCommand("resign");
         ResignButton.setText("Resign");
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 7;
-        getContentPane().add(ResignButton, gridBagConstraints);
-
         DrawButton.setActionCommand("draw");
         DrawButton.setText("Draw");
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 7;
+        getContentPane().add(ResignButton, gridBagConstraints);
+
         gridBagConstraints.gridy = 6;
         getContentPane().add(DrawButton, gridBagConstraints);
     }
