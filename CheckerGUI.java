@@ -50,14 +50,20 @@ public class CheckerGUI extends JFrame implements ActionListener {
         playerOnesName = trimName(name1);
         playerTwosName = trimName(name2);
         theFacade = facade;
-        register();
 
+        register();
         initComponents();
         pack();
         update();
         //updateTime();
-    }
+    } //CheckerGUI
 
+    /**
+     * Helper method to trim player name
+     *
+     * @param name  the player name
+     * @return the trimmed name
+     */
     private String trimName(String name) {
         //long names mess up the way the GUI displays
         //this code shortens the name if it is too long
@@ -66,9 +72,9 @@ public class CheckerGUI extends JFrame implements ActionListener {
         } else {
             return name;
         }
-    }
+    } //trimName
 
-    /*
+    /**
      * This method handles setting up the timer
      */
     private void register() {
@@ -77,13 +83,11 @@ public class CheckerGUI extends JFrame implements ActionListener {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-    }
+    } //register
 
     /**
      * This method is called from within the constructor to
-     * initialize the form. It initializes the components
-     * adds the buttons to the Vecotr of squares and adds
-     * an action listener to the components
+     * initialize the form. It initializes the components.
      */
     private void initComponents() {
         jButtons = new JButton[64];
@@ -103,8 +107,12 @@ public class CheckerGUI extends JFrame implements ActionListener {
         DrawButton.addActionListener(this);
 
         initGrid();
-    }
+    } //initComponents
 
+    /**
+     * Called from initComponents to add the buttons to the Vector of squares
+     * and add an action listener to the components
+     */
     private void initGrid() {
         this.setResizable(false);
         jAddActionListeners();
@@ -123,21 +131,32 @@ public class CheckerGUI extends JFrame implements ActionListener {
         addPlayerNames();
         addLabels();
         addMiscButtons();
-    }
+    } //initGrid
 
+    /**
+     * Fills jButtons array with JButtons and adds an action listener
+     */
     private void jAddActionListeners() {
         for (int i = 0; i < jButtons.length; i++) {
             jButtons[i] = new JButton();
             jButtons[i].addActionListener(this);
         }
-    }
+    } //jAddActionListeners
 
+    /**
+     * Populates a vector with the elements of a JButton array
+     * @param buttons the JButton array
+     * @return the vector
+     */
     private Vector addButtons(JButton[] buttons) {
         Vector vector = new Vector();
         vector.addAll(Arrays.asList(buttons));
         return vector;
-    }
+    } //addButtons
 
+    /**
+     * Adds the checkerboard buttons to the GUI
+     */
     private void populateCheckerboard() {
         gridBagConstraints = new java.awt.GridBagConstraints();
         int i = 0;
@@ -161,8 +180,11 @@ public class CheckerGUI extends JFrame implements ActionListener {
             if (wb == 0) wb++;
             else if (wb == 1) wb--;
         }
-    }
+    } //populateCheckerboard
 
+    /**
+     * Adds the player names to the GUI
+     */
     private void addPlayerNames() {
         gridBagConstraints = new java.awt.GridBagConstraints();
 
@@ -178,8 +200,11 @@ public class CheckerGUI extends JFrame implements ActionListener {
         getContentPane().add(PlayerTwoLabel, gridBagConstraints);
         gridBagConstraints.gridy = 9;
         getContentPane().add(PlayerOneLabel, gridBagConstraints);
-    }
+    } //addPlayerNames
 
+    /**
+     * Add the labels to the GUI
+     */
     private void addLabels() {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
@@ -210,8 +235,11 @@ public class CheckerGUI extends JFrame implements ActionListener {
 
         gridBagConstraints.gridy = 4;
         getContentPane().add(secondsLeftLabel, gridBagConstraints);
-    }
+    } //addLabels
 
+    /**
+     * Adds the resign and draw buttons to the GUI
+     */
     private void addMiscButtons() {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
@@ -227,20 +255,19 @@ public class CheckerGUI extends JFrame implements ActionListener {
 
         gridBagConstraints.gridy = 6;
         getContentPane().add(DrawButton, gridBagConstraints);
-    }
+    } //addMiscButtons
 
     /**
      * Exit the Application
-     *
      */
     private void exitForm() {
         theFacade.pressQuit();
-    }
+    } //exitForm
 
     /**
      * Takes care of input from users, handles any actions performed
      *
-     * @param e the event that has occured
+     * @param e the event that has occurred
      */
     public void actionPerformed(ActionEvent e) {
         try {
@@ -277,29 +304,23 @@ public class CheckerGUI extends JFrame implements ActionListener {
                     e.getActionCommand().equals("58") ||
                     e.getActionCommand().equals("60") ||
                     e.getActionCommand().equals("62")) {
-
                 //call selectSpace with the button pressed
-                theFacade.selectSpace(
-                        Integer.parseInt(e.getActionCommand()));
-
-                //if draw is pressed
+                theFacade.selectSpace(Integer.parseInt(e.getActionCommand()));
+            //if draw is pressed
             } else if (e.getActionCommand().equals("draw")) {
                 //does sequence of events for a draw
                 theFacade.pressDraw();
-
-                //if resign is pressed
+            //if resign is pressed
             } else if (e.getActionCommand().equals("resign")) {
                 //does sequence of events for a resign
                 theFacade.pressQuit();
-
-                //if the source came from the facade
+            //if the source came from the facade
             } else if (e.getSource().equals(theFacade)) {
-
                 //if its a player switch event
                 if ((e.getActionCommand()).equals(Facade.playerSwitch)) {
                     //set a new time
                     timeRemaining = theFacade.getTimer();
-                    //if it is an update event
+                //if it is an update event
                 } else if ((e.getActionCommand()).equals(Facade.update)) {
                     //update the GUI
                     update();
@@ -307,7 +328,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
                     throw new Exception("unknown message from facade");
                 }
             }
-            //catch various Exceptions
+        //catch various Exceptions
         } catch (NumberFormatException excep) {
             System.err.println(
                     "GUI exception: Error converting a string to a number");
@@ -320,7 +341,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
                     + except.getMessage());
             except.printStackTrace();
         }
-    }
+    } //actionPerformed
 
     /**
      * Updates the GUI reading the pieces in the board
@@ -339,16 +360,12 @@ public class CheckerGUI extends JFrame implements ActionListener {
         for (int i = 1; i < board.sizeOf(); i++) {
             // if there is a piece there
             if (board.occupied(i)) {
-
                 //check to see if color is blue
                 if (board.colorAt(i) == Color.blue) {
-
                     //if there is a  single piece there
                     if ((board.getPieceAt(i)).getType() == Board.SINGLE) {
-
                         //show a blue single piece in that spot board
                         temp = (JButton) possibleSquares.get(i);
-
                         //get the picture from the web
                         try {
                             temp.setIcon(
@@ -356,53 +373,36 @@ public class CheckerGUI extends JFrame implements ActionListener {
                         } catch (MalformedURLException e) {
                             System.out.println(e.getMessage());
                         }
-
-                        //if there is a kinged piece there
+                    //if there is a kinged piece there
                     } else if ((board.getPieceAt(i)).getType() == Board.KING) {
-
                         //show a blue king piece in that spot board
                         temp = (JButton) possibleSquares.get(i);
-
                         //get the picture formt the web
                         try {
-                            temp.setIcon(
-                                    new ImageIcon(new URL("file:BlueKing.gif")));
-                        } catch (Exception e) {
-                        }
-
+                            temp.setIcon(new ImageIcon(new URL("file:BlueKing.gif")));
+                        } catch (Exception e) {}
                     }
-
-                    //check to see if the color is white
+                //check to see if the color is white
                 } else if (board.colorAt(i) == Color.white) {
-
                     //if there is a single piece there
                     if ((board.getPieceAt(i)).getType() == Board.SINGLE) {
-
                         //show a blue single piece in that spot board
                         temp = (JButton) possibleSquares.get(i);
-
                         //get the picture from the web
                         try {
-                            temp.setIcon(
-                                    new ImageIcon(new URL("file:WhiteSingle.gif")));
-                        } catch (Exception e) {
-                        }
-
-                        //if there is a kinged piece there
+                            temp.setIcon(new ImageIcon(new URL("file:WhiteSingle.gif")));
+                        } catch (Exception e) {}
+                    //if there is a kinged piece there
                     } else if ((board.getPieceAt(i)).getType() == Board.KING) {
-
                         //show a blue king piece in that spot board
                         temp = (JButton) possibleSquares.get(i);
-
                         //get the picture from the web
                         try {
-                            temp.setIcon(
-                                    new ImageIcon(new URL("file:WhiteKing.gif")));
-                        } catch (Exception e) {
-                        }
+                            temp.setIcon(new ImageIcon(new URL("file:WhiteKing.gif")));
+                        } catch (Exception e) {}
                     }
-                    //if there isnt a piece there
                 }
+            //if there isnt a piece there
             } else {
                 //show no picture
                 temp = (JButton) possibleSquares.get(i);
@@ -410,7 +410,7 @@ public class CheckerGUI extends JFrame implements ActionListener {
             }
         }
 
-        //this code updates whos turn it is
+        //update who's turn it is
         if (theFacade.whosTurn() == 2) {
             PlayerTwoLabel.setForeground(Color.red);
             PlayerOneLabel.setForeground(Color.black);
@@ -420,10 +420,11 @@ public class CheckerGUI extends JFrame implements ActionListener {
             PlayerTwoLabel.setForeground(Color.black);
             whosTurnLabel.setText(playerOnesName + "'s turn");
         }
-    }
+    } //update
 
     /**
-     * Update the timer
+     * Updates the timer
+     * Not currently used in the program
      */
     public void updateTime() {
         if (theFacade.getTimer() > 0) {
@@ -432,33 +433,25 @@ public class CheckerGUI extends JFrame implements ActionListener {
             if (timeRemaining <= 0 && (warningLabel.getText()).equals("")) {
                 timeRemaining = theFacade.getTimerWarning();
                 warningLabel.setText("Time is running out!!!");
-
-                // if the time has run out and it was in warning time quit game
-            } else if (timeRemaining <= 0 &&
-                    !(warningLabel.getText()).equals("")) {
-
+            // if the time has run out and it was in warning time quit game
+            } else if (timeRemaining <= 0 && !(warningLabel.getText()).equals("")) {
                 theFacade.pressQuit();
-
             } else {
-
                 timeRemaining--;
-
             }
-
             secondsLeftLabel.setText(timeRemaining + " sec.");
-
         } else {
             secondsLeftLabel.setText("*****");
         }
-    }
+    } //updateTime
 
     /**
-     * Checks the ending condotions for the game
+     * Checks the ending conditions for the game
      * see if there a no pieces left
      *
      * @return the return value for the method
-     * true if the game should end
-     * false if game needs to continue
+     *      true if the game should end
+     *      false if game needs to continue
      */
     private boolean checkEndConditions() {
         //the return value
@@ -466,10 +459,8 @@ public class CheckerGUI extends JFrame implements ActionListener {
         try {
             //the number of each piece left
             int whitesGone = 0, bluesGone = 0;
-
             //the board to work with
             Board temp = theFacade.stateOfBoard();
-
             //go through all the spots on the board
             for (int i = 1; i < temp.sizeOf(); i++) {
                 //if there is a piece there
@@ -478,15 +469,13 @@ public class CheckerGUI extends JFrame implements ActionListener {
                     if ((temp.getPieceAt(i)).getColor() == Color.blue) {
                         // increment number of blues
                         bluesGone++;
-                        //if the piece is white
-                    } else if ((temp.getPieceAt(i)).getColor()
-                            == Color.white) {
+                    //if the piece is white
+                    } else if ((temp.getPieceAt(i)).getColor() == Color.white) {
                         //increment number of whites
                         whitesGone++;
                     }
                 }
-            }//end of for loop
-
+            } //end of for loop
             //if either of the number are 0
             if (whitesGone == 0 || bluesGone == 0) {
                 retVal = true;
@@ -495,6 +484,6 @@ public class CheckerGUI extends JFrame implements ActionListener {
             System.err.println(e.getMessage());
         }
         return retVal;
-    }//checkEndConditions
+    } //checkEndConditions
 
 } //checkerGUI.java
