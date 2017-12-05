@@ -28,11 +28,8 @@ import javax.swing.*;
  */
 
 public class Driver {
-    private Player playerOne;
-    private Player playerTwo;
+    private PlayerList playerList;
     private Facade.GameType gameType;
-    private Player activePlayer;
-    private Player passivePlayer;
     private boolean runningTimer;
     private Timer theTimer;
     private Facade facade;
@@ -51,6 +48,7 @@ public class Driver {
         rules = new Rules(theBoard, this);
         facade = new Facade(theBoard, this);
         network = new Network(this);
+        playerList = new PlayerList();
     }
 
     /**
@@ -77,40 +75,38 @@ public class Driver {
         // Check to see if player passed in was the active player
         // If player passed in was active player, check for multiple
         // jump (space is none negative)
-        if (activePlayer == player) {
+        if (playerList.getActivePlayer() == player) {
 
             // Inform the player that the move was not valid,
             // or to make antoher jump
             if (space < 0) {
                 JOptionPane.showMessageDialog(null,
-                        activePlayer.getName() + " made an illegal move",
+                        playerList.getActivePlayer().getName() + " made an illegal move",
                         "Invalid Move", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null,
-                        activePlayer.getName() + " please make" +
+                        playerList.getActivePlayer().getName() + " please make" +
                                 " another jump", "Multiple Jump Possible",
                         JOptionPane.INFORMATION_MESSAGE);
 
                 // Get the GUI to update
-                facade.setPlayerModes(activePlayer, passivePlayer);
+                facade.setPlayerModes(playerList.getActivePlayer(), playerList.getPassivePlayer());
 
                 // If game is networked tell networked player to send
                 // the move
-                network.sendMove(activePlayer);
+                network.sendMove(playerList.getActivePlayer());
             }
-        } else if (passivePlayer == player) {
+        } else if (playerList.getPassivePlayer() == player) {
             // If game is networked, tell networked player to send move
-            network.askForMove(activePlayer);
+            network.askForMove(playerList.getActivePlayer());
 
             // Inform the other player to make a move and
             // tell facade to update any listining GUIs and
             // reset the timer
 
-            Player tempHold = activePlayer;
-            activePlayer = passivePlayer;
-            passivePlayer = tempHold;
+            playerList.switchActivePassivePlayers();
 
-            facade.setPlayerModes(activePlayer, passivePlayer);
+            facade.setPlayerModes(playerList.getActivePlayer(), playerList.getPassivePlayer());
         }
 
     }
@@ -125,8 +121,8 @@ public class Driver {
     public void endGame(String message) {
 
         // Call endOfGame on both players with the given message
-        playerOne.endOfGame(message);
-        playerTwo.endOfGame(message);
+        playerList.getPlayerOne().endOfGame(message);
+        playerList.getPlayerTwo().endOfGame(message);
 
         // When players have acknowledged the end of game
         // call System.exit()
@@ -152,9 +148,9 @@ public class Driver {
         }
 
         if (num == 1) {
-            playerOne = temp;
+            playerList.setPlayerOne(temp);
         } else {
-            playerTwo = temp;
+            playerList.setPlayerTwo(temp);
         }
     }
 
@@ -165,11 +161,7 @@ public class Driver {
      * @param name The name to assign to the player.
      */
     public void setPlayerName(int num, String name) {
-        if (num == 1) {
-            playerOne.setName(name);
-        } else {
-            playerTwo.setName(name);
-        }
+        playerList.getPlayer(num).setName(name);
     }
 
     /**
@@ -179,11 +171,7 @@ public class Driver {
      * @param color The color to assign to the player.
      */
     public void setPlayerColor(int num, Color color) {
-        if (num == 1) {
-            playerOne.setColor(color);
-        } else {
-            playerTwo.setColor(color);
-        }
+        playerList.getPlayer(num).setColor(color);
     }
 
     /**
@@ -203,10 +191,10 @@ public class Driver {
      */
     public void drawOffered(Player player) {
 
-        if (player.getNumber() == playerOne.getNumber()) {
-            playerTwo.acceptDraw(player);
-        } else if (player.getNumber() == playerTwo.getNumber()) {
-            playerOne.acceptDraw(player);
+        if (player.getNumber() == playerList.getPlayerOne().getNumber()) {
+            playerList.getPlayerTwo().acceptDraw(player);
+        } else if (player.getNumber() == playerList.getPlayerTwo().getNumber()) {
+            playerList.getPlayerOne().acceptDraw(player);
         }
 
     }
@@ -221,8 +209,8 @@ public class Driver {
         if (gameType == Facade.GameType.LOCAL_GAME) {
             player.endInDeclineDraw(player);
         } else {
-            playerOne.endInDeclineDraw(player);
-            playerTwo.endInDeclineDraw(player);
+            playerList.getPlayerOne().endInDeclineDraw(player);
+            playerList.getPlayerTwo().endInDeclineDraw(player);
         }
     }
 
@@ -233,8 +221,8 @@ public class Driver {
      * @param player player who quit
      */
     public void endInQuit(Player player) {
-        playerOne.endOfGame(player.getName() + " quit the game");
-        playerTwo.endOfGame(player.getName() + " quit the game");
+        playerList.getPlayerOne().endOfGame(player.getName() + " quit the game");
+        playerList.getPlayerTwo().endOfGame(player.getName() + " quit the game");
     }
 
     /**
@@ -268,11 +256,11 @@ public class Driver {
         // Randomly select color for each player and call the
         // setColor() method of each
         if (Math.random() > .5) {
-            playerOne.setColor(Color.blue);
-            playerTwo.setColor(Color.white);
+            playerList.getPlayerOne().setColor(Color.blue);
+            playerList.getPlayerTwo().setColor(Color.white);
         } else {
-            playerOne.setColor(Color.white);
-            playerTwo.setColor(Color.blue);
+            playerList.getPlayerOne().setColor(Color.white);
+            playerList.getPlayerTwo().setColor(Color.blue);
         }
     }
 
@@ -282,18 +270,18 @@ public class Driver {
      */
     public void startGame() {
         selectColors();
-        network.start(playerOne, playerTwo);
+        network.start(playerList.getPlayerOne(), playerList.getPlayerTwo());
 
         // Tell player with the correct color to make a move
-        if (playerOne.getColor() == Color.white) {
-            activePlayer = playerOne;
-            passivePlayer = playerTwo;
+        if (playerList.getPlayerOne().getColor() == Color.white) {
+            playerList.setActivePlayer(playerList.getPlayerOne());
+            playerList.setPassivePlayer(playerList.getPlayerTwo());
         } else {
-            activePlayer = playerTwo;
-            passivePlayer = playerOne;
+            playerList.setActivePlayer(playerList.getPlayerTwo());
+            playerList.setPassivePlayer(playerList.getPlayerOne());
         }
 
-        facade.setPlayerModes(activePlayer, passivePlayer);
+        facade.setPlayerModes(playerList.getActivePlayer(), playerList.getPassivePlayer());
     }
 
     /**
@@ -304,8 +292,8 @@ public class Driver {
      */
     public void setHost(URL host) {
         // Call connectToHost in player two with the URL
-        network.setHost(playerOne, host);
-        network.setHost(playerTwo, host);
+        network.setHost(playerList.getPlayerOne(), host);
+        network.setHost(playerList.getPlayerTwo(), host);
     }
 
     /**
@@ -315,7 +303,7 @@ public class Driver {
      */
     public Player getOppositePlayer() {
         // Returns the player whos getTurnStatus is false
-        return passivePlayer;
+        return playerList.getPassivePlayer();
     }
 
     /**
