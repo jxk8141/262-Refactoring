@@ -41,7 +41,6 @@ public class Driver {
 
     /**
      * Constructor
-     * <p>
      * Create the driver, which in turn creates the rest of
      * the system.
      */
@@ -72,8 +71,6 @@ public class Driver {
      * @param player The player whose turn it will now be
      * @param space  The space on the board from which a multiple
      *               jump has to be made
-     * @pre a players has made a move
-     * @post a player has been told to make a move
      */
     public void endTurn(Player player, int space) {
 
@@ -124,10 +121,6 @@ public class Driver {
      *
      * @param message the message to send to all players regarding the
      *                reason for ending the game
-     * @pre the criteria for ending a game has been met, depending on why
-     * the game ended
-     * @post the game has been ended for both players and the game is ready
-     * to exit
      */
     public void endGame(String message) {
 
@@ -146,8 +139,6 @@ public class Driver {
      * @param type the type of player to be created (0 - local, 1 - network)
      * @param name the name of the player
      * @param num  the player's number
-     * @pre less than 2 players exist
-     * @post a player with correct name has been created
      */
     public void createPlayer(int num, int type, String name) {
         Player temp = null;
@@ -198,10 +189,6 @@ public class Driver {
     /**
      * This method ends the game in a draw, alerting both players
      * that the draw has taken place
-     *
-     * @pre both players have agreed to a draw
-     * @post the game has ended and both players have been notified
-     * of the draw
      */
     public void endInDraw(Player player) {
         // Calls endOfGame with a message that game ended in a draw.
@@ -243,7 +230,7 @@ public class Driver {
      * Ends the game as a result of a player quitting, notifying
      * each player
      *
-     * @param the player who quit
+     * @param player player who quit
      */
     public void endInQuit(Player player) {
         playerOne.endOfGame(player.getName() + " quit the game");
@@ -258,9 +245,6 @@ public class Driver {
      * @param time    : the number of seconds for each turn
      * @param warning : whether or not a player will be warned
      *                that their turn is going to end
-     * @pre It has been selected to use a timer in the game setup
-     * @post The timer has been created and the appropriate time
-     * restraints are in place
      */
     public void setTimer(int time, int warning) {
         // If values are negative, set runningTimer to false
@@ -279,9 +263,6 @@ public class Driver {
     /**
      * This method sets the colors of pieces that each player
      * will be
-     *
-     * @pre the game has been started, and there are 2 players
-     * @post each player has their colors
      */
     private void selectColors() {
         // Randomly select color for each player and call the
@@ -298,10 +279,6 @@ public class Driver {
     /**
      * This method will start the game play. Letting the first person
      * move their piece and so on
-     *
-     * @pre There are 2 players to play, and all pregame conditions are
-     * in place
-     * @post The first person is able to make their first move
      */
     public void startGame() {
         selectColors();
@@ -324,22 +301,17 @@ public class Driver {
      * a game over a network.
      *
      * @param host the host of the game to be played
-     * @pre There is a person to host the game, both players are
-     * networkedPlayers
-     * @post The players are connected to play
      */
     public void setHost(URL host) {
         // Call connectToHost in player two with the URL
-        ((NetworkPlayer) playerOne).setHost(host);
-        ((NetworkPlayer) playerTwo).setHost(host);
+        network.setHost(playerOne, host);
+        network.setHost(playerTwo, host);
     }
 
     /**
      * Return the player whos turn it is not
      *
      * @return the player whose turn it is not
-     * @pre there are 2 valid players and the game has started
-     * @post this method has not altered anything
      */
     public Player getOppositePlayer() {
         // Returns the player whos getTurnStatus is false
@@ -347,24 +319,8 @@ public class Driver {
     }
 
     /**
-     * Whether the current game uses a timer
-     *
-     * @return true if a timer is being sed in the game, otherwise
-     * false
-     * @pre the game has started
-     * @post this method has not altered anything
-     */
-    public boolean timerRunning() {
-        return runningTimer;
-    }
-
-
-    /**
      * Select the type of game
-     *
-     * @param mode the mode (0 local, 1 host, 2 client) of the game
-     * @pre Players have not been created
-     * @post Mode is set
+     * @param newMode Mode (0 local, 1 host, 2 client) of the game
      */
     public void setGameMode(Facade.GameType newMode) {
         // Set the value of mode
@@ -374,30 +330,9 @@ public class Driver {
     /**
      * Return the integer representing the type of game
      *
-     * @return the type of game
-     * @pre Game has started
-     * @post This method has changed nothing
+     * @return Type of game
      */
     public Facade.GameType getGameMode() {
         return gameType;
-    }
-
-    /**
-     * Return the notifier of the Timer
-     *
-     * @return the notifier for the Timer
-     * @pre The game is running
-     * @post This method has changed nothing
-     */
-    public Notifier getTimerNotifier() {
-        // Return the timers notifier, by asking the timer
-        // for its notifier
-        Notifier timer = null;
-
-        if (theTimer != null) {
-            timer = theTimer.getNotifier();
-        }
-
-        return timer;
     }
 }

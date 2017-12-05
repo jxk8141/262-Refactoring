@@ -1,3 +1,5 @@
+import java.net.URL;
+
 public class Network {
     private Driver driver;
 
@@ -22,6 +24,10 @@ public class Network {
         } else if(gameType == Facade.GameType.CLIENT_GAME) {
             this.startNetworkGame(playerOne);
         }
+    }
+
+    public void setHost(Player player, URL host) {
+        ((NetworkPlayer) player).setHost(host);
     }
 
     /**
