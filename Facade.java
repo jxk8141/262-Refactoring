@@ -23,10 +23,9 @@ import java.net.*;
  */
 
 public class Facade extends Component {
-
-    public static int LOCALGAME  = 10000;
-    public static int HOSTGAME   = 20000;
-    public static int CLIENTGAME = 30000;
+    public enum GameType {
+        LOCAL_GAME, HOST_GAME, CLIENT_GAME;
+    };
 
     public static String update       = "update";
     public static String playerSwitch = "switch";
@@ -301,16 +300,14 @@ public class Facade extends Component {
      * @pre we are in the setup for a game
      * 
      */
-    public void setGameMode( int mode ) throws Exception{
+    public void setGameMode( GameType mode ) throws Exception{
 	// Check to make sure that mode is a legal value
 	// Call setGameMode() in driver class passing it 
 	// the legal mode.  If mode is not a legal value 
 	// an exception will be thrown
-       	if( mode == LOCALGAME || mode == HOSTGAME || mode == CLIENTGAME ){
-	    theDriver.setGameMode( mode );
-	}else {
-	    throw new Exception( "Invalid Game Mode" );
-	}
+
+        theDriver.setGameMode( mode );
+
     }
     
     /**
@@ -422,9 +419,9 @@ public class Facade extends Component {
      * @param num  Int for player number (either 1 or 2)
      * @param type Int for type of player (Local, network, etc.)
      */
-    public void createPlayer( int num, int type ) {
+    public void createPlayer( int num, GameType type ) {
 
-	if ( type == HOSTGAME || type == CLIENTGAME ) {
+	if ( type == GameType.HOST_GAME || type == GameType.CLIENT_GAME ) {
 	    theDriver.createPlayer( num, Player.NETWORKPLAYER, "UnNamedPlayer" );
 	} else {
 	    theDriver.createPlayer( num, Player.LOCALPLAYER, "UnNamedPlayer" );

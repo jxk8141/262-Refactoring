@@ -222,38 +222,38 @@ public class Firstscreen extends JFrame implements ActionListener{
 		    if( tempButton.getActionCommand().equals( "local" ) ){
 			
 			//set up a local game
-			theFacade.setGameMode( theFacade.LOCALGAME );
+			theFacade.setGameMode( Facade.GameType.LOCAL_GAME );
 			
-			theFacade.createPlayer( 1, theFacade.LOCALGAME );
-			theFacade.createPlayer( 2, theFacade.LOCALGAME );
+			theFacade.createPlayer( 1, Facade.GameType.LOCAL_GAME );
+			theFacade.createPlayer( 2, Facade.GameType.LOCAL_GAME );
 			
 			//hide the Firstscreen, make a Secondscreen and show it
 			this.hide();
-			next = new Secondscreen( theFacade, this, theFacade.LOCALGAME );
+			next = new Secondscreen( theFacade, this, Facade.GameType.LOCAL_GAME );
 			next.show();
 			
 			//if the host game button is selected
 		    } else if( tempButton.getActionCommand().equals( "host" ) ){
 			
 			//set up to host a game
-			theFacade.setGameMode( theFacade.HOSTGAME );
+			theFacade.setGameMode( Facade.GameType.HOST_GAME );
 			
-			theFacade.createPlayer( 1, theFacade.HOSTGAME );
-			theFacade.createPlayer( 2, theFacade.HOSTGAME );
+			theFacade.createPlayer( 1, Facade.GameType.HOST_GAME );
+			theFacade.createPlayer( 2, Facade.GameType.HOST_GAME );
 			
 			//hide the Firstscreen, make the Secondscreen and show it
 			this.hide();
-			next = new Secondscreen( theFacade, this, theFacade.HOSTGAME );
+			next = new Secondscreen( theFacade, this, Facade.GameType.HOST_GAME );
 			next.show();
 			
 			//if the join game button is selected
 		    } else if( tempButton.getActionCommand().equals( "join" ) ){
 			
 			//set up to join a game
-			theFacade.setGameMode( theFacade.CLIENTGAME );
+			theFacade.setGameMode( Facade.GameType.CLIENT_GAME );
 			
-			theFacade.createPlayer( 1, theFacade.CLIENTGAME );
-			theFacade.createPlayer( 2, theFacade.CLIENTGAME );
+			theFacade.createPlayer( 1, Facade.GameType.CLIENT_GAME );
+			theFacade.createPlayer( 2, Facade.GameType.CLIENT_GAME );
 			
 			//try to connect
 			try {
@@ -265,7 +265,7 @@ public class Firstscreen extends JFrame implements ActionListener{
 			    
 			    //hide the Firstscreen, make and show the Second screen
 			    this.hide();
-			    next = new Secondscreen( theFacade, this, theFacade.CLIENTGAME );
+			    next = new Secondscreen( theFacade, this, Facade.GameType.CLIENT_GAME );
 			    next.show();
                                         
 			    //catch any exceptions

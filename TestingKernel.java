@@ -89,7 +89,7 @@ public class TestingKernel extends java.lang.Object{
         
         try{
             // Set this game to be a local game.
-            testFacade.setGameMode( testFacade.LOCALGAME );
+            testFacade.setGameMode( Facade.GameType.LOCAL_GAME );
         
             // Create players
             // createPlayer(int num, int type, String name)

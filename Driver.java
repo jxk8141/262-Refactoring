@@ -31,7 +31,7 @@ public class Driver {
     
     private Player  playerOne;
     private Player  playerTwo;
-    private int     gameType;
+    private Facade.GameType gameType;
     private Player  activePlayer;
     private Player  passivePlayer;
     private boolean runningTimer;
@@ -102,15 +102,15 @@ public class Driver {
 		
 		// If game is networked tell networked player to send 
 		// the move
-		if ( gameType == theFacade.HOSTGAME 
-		     || gameType == theFacade.CLIENTGAME ) {
+		if ( gameType == Facade.GameType.HOST_GAME
+		     || gameType == Facade.GameType.CLIENT_GAME ) {
 		    ( (NetworkPlayer) activePlayer ).sendMove();
 		}
 	    }
 	} else if ( passivePlayer == player ) {
 	    // If game is networked, tell networked player to send move
-	    if ( gameType == theFacade.HOSTGAME 
-		 || gameType == theFacade.CLIENTGAME ) {
+	    if ( gameType == Facade.GameType.HOST_GAME
+		 || gameType == Facade.GameType.CLIENT_GAME ) {
 		((NetworkPlayer)activePlayer).sendMove();
 		((NetworkPlayer)activePlayer).waitForPlayer();
 	    }
@@ -244,7 +244,7 @@ public class Driver {
      * @param player The player declining the draw.
      */
     public void declineDraw( Player player ){
-	if ( gameType == theFacade.LOCALGAME ) {
+	if ( gameType == Facade.GameType.LOCAL_GAME ) {
 	    player.endInDeclineDraw( player );
 	} else {
 	    playerOne.endInDeclineDraw( player );
@@ -320,10 +320,10 @@ public class Driver {
     public void startGame(){
 	selectColors();
        
-	if ( gameType == theFacade.HOSTGAME ) {
+	if ( gameType == Facade.GameType.HOST_GAME ) {
 	    ( (NetworkPlayer)playerTwo).waitForConnect();
 	    //( (NetworkPlayer)playerTwo).waitForConnect();
-	} else if ( gameType == theFacade.CLIENTGAME ) {
+	} else if ( gameType == Facade.GameType.CLIENT_GAME ) {
 	    //( (NetworkPlayer)playerOne).connectToHost();
 	    ( (NetworkPlayer)playerOne).connectToHost();
 	}
@@ -392,7 +392,7 @@ public class Driver {
      * @pre  Players have not been created
      * @post Mode is set
      */
-    public void setGameMode( int newMode ){
+    public void setGameMode( Facade.GameType newMode ){
 	// Set the value of mode
 	gameType = newMode;
     }
@@ -405,7 +405,7 @@ public class Driver {
      * @pre  Game has started
      * @post This method has changed nothing
      */
-    public int getGameMode(){
+    public Facade.GameType getGameMode(){
    	return gameType;
     }
     

@@ -1,0 +1,26 @@
+Known issues of Checkers
+
+Network player does not send messages properly after connecting.
+
+Timer did not display properly and caused errors, so code linking 
+	it to the remainder of the program were removed.
+
+Sometimes Kings cannot move freely in all four directions.
+
+Sometimes the game seems frozen until the user has clicked several
+	squares, eventually sending an illegal move,
+	this in turn allows valid moves to be made.
+
+Player 2's name may not be over 8 characters, otherwise the GUI will
+	not display properly.
+
+Dialogues produced by many classes.
+
+Players not notified that Black goes first, and which player
+	is represented by which color.
+
+Internal colors do not match external colors.
+
+The icons used for the pieces reside on a web page, because
+	we could not get Java to read them locally.
+	(Fixed this easily - JRV)

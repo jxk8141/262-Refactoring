@@ -30,7 +30,7 @@ public class Secondscreen extends JFrame
     
     private Facade theFacade;
     private Firstscreen theFirst;
-    private int gameType;
+    private Facade.GameType gameType;
     
     // Variables declaration
     private Checkbox timedGameBox;
@@ -57,7 +57,7 @@ public class Secondscreen extends JFrame
      * 
      */
     
-    public Secondscreen( Facade f, Firstscreen first, int type ) {
+    public Secondscreen( Facade f, Firstscreen first, Facade.GameType type ) {
 
         super( "Second Screen" );
         theFacade = f;
@@ -229,11 +229,11 @@ public class Secondscreen extends JFrame
        
 	//determine what components should be disabled
 	//depending on the game mode
-	if ( gameType == theFacade.LOCALGAME ) {
-	} else if ( gameType == theFacade.HOSTGAME ) {
+	if ( gameType == Facade.GameType.LOCAL_GAME ) {
+	} else if ( gameType == Facade.GameType.HOST_GAME ) {
 	    playerTwoLabel.setEnabled( false );
 	    playerTwoField.setEnabled( false );
-	} else if ( gameType == theFacade.CLIENTGAME ) {
+	} else if ( gameType == Facade.GameType.CLIENT_GAME ) {
 	    playerOneLabel.setEnabled( false );
 	    playerOneField.setEnabled( false );
 	    
