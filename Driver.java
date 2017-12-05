@@ -137,20 +137,14 @@ public class Driver {
      * @param num  the player's number
      */
     public void createPlayer(int num, Player.PlayerType type, String name) {
-        Player temp = null;
+        Builder tempBuilder =  new Builder().setName(name).setNum(num).setRules(rules);
+        Player tempPlayer = type == Player.PlayerType.LOCALPLAYER ? tempBuilder.buildLocalPlayer() : tempBuilder.buildNetworkPlayer();
 
-        if (type == Player.PlayerType.LOCALPLAYER) {
-            temp = new LocalPlayer(num, rules, this);
-            temp.setName(name);
-        } else if (type == Player.PlayerType.NETWORKPLAYER) {
-            temp = new NetworkPlayer(num, rules, this);
-            temp.setName(name);
-        }
 
         if (num == 1) {
-            playerList.setPlayerOne(temp);
+            playerList.setPlayerOne(tempPlayer);
         } else {
-            playerList.setPlayerTwo(temp);
+            playerList.setPlayerTwo(tempPlayer);
         }
     }
 
