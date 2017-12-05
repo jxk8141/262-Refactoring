@@ -751,18 +751,18 @@ public class Rules {
      *
      *  @return moves, a vector of end positions for the piece.
      */
-    private Vector wallPieceMoves( int piecePosition, boolean jump, 
+    private Vector wallPieceMoves( int piecePosition, boolean jump,
 				   int pieceType , Player aPlayer ) {
-	
 	Vector moves = new Vector();
-	
-        try{
-	    
-	    boolean adjacentSpace = false;
+
+
+		try{
+
+			boolean adjacentSpace = false;
 	    Piece aPiece;
 	    Player player = aPlayer;
 	    boolean endSpace = false;
-	    
+
 	    if ( pieceType == theBoard.KING ) {
 		if ( leftWallPieces.contains( new Integer( piecePosition ) ) ) {
 		    if ( jump ) {
@@ -787,14 +787,14 @@ public class Rules {
 			    // Check the space diagonal to the piece to see if
 			    // it is empty.
 			    endSpace = theBoard.occupied( piecePosition + 18 );
-			    // If the space is empty, there is a multiple 
+			    // If the space is empty, there is a multiple
 			    // jump that must be made.
 			    if ( !endSpace ) {
 				moves.addElement(new Integer( piecePosition
 							      + 18 ) );
 			    }
 			}
-		    } 
+		    }
 		    // Otherwise check for a regular move, not a jump.
 		    else {
 			adjacentSpace = theBoard.occupied( piecePosition - 7 );
@@ -812,9 +812,9 @@ public class Rules {
 	            if ( jump ) {
 			adjacentSpace = theBoard.occupied( piecePosition - 9 );
 			aPiece = theBoard.getPieceAt( piecePosition - 9 );
-			if ( adjacentSpace && ( aPiece.getColor() != 
+			if ( adjacentSpace && ( aPiece.getColor() !=
 						player.getColor() ) ) {
-			    // Check the space diagonal to the piece to 
+			    // Check the space diagonal to the piece to
 			    // see if it is empty.
 			    endSpace = theBoard.occupied( piecePosition - 18 );
 			    // If the space is empty, there is a multiple
@@ -961,7 +961,7 @@ public class Rules {
         } catch( Exception e ) {}
 
         return moves;
-   
+
     }
     
     /*
