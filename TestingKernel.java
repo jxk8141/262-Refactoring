@@ -93,8 +93,8 @@ public class TestingKernel extends java.lang.Object{
         
             // Create players
             // createPlayer(int num, int type, String name)
-            theDriver.createPlayer( 1, Player.LOCALPLAYER, playerOne );
-            theDriver.createPlayer( 2, Player.LOCALPLAYER, playerTwo );
+            theDriver.createPlayer( 1, Player.PlayerType.LOCALPLAYER, playerOne );
+            theDriver.createPlayer( 2, Player.PlayerType.LOCALPLAYER, playerTwo );
             
             // Set the names for the players.
             testFacade.setPlayerName( 1, playerOne );

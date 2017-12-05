@@ -25,7 +25,7 @@ import java.net.*;
 public class Facade extends Component {
     public enum GameType {
         LOCAL_GAME, HOST_GAME, CLIENT_GAME;
-    };
+    }
 
     public static String update       = "update";
     public static String playerSwitch = "switch";
@@ -422,9 +422,9 @@ public class Facade extends Component {
     public void createPlayer( int num, GameType type ) {
 
 	if ( type == GameType.HOST_GAME || type == GameType.CLIENT_GAME ) {
-	    theDriver.createPlayer( num, Player.NETWORKPLAYER, "UnNamedPlayer" );
+	    theDriver.createPlayer( num, Player.PlayerType.NETWORKPLAYER, "UnNamedPlayer" );
 	} else {
-	    theDriver.createPlayer( num, Player.LOCALPLAYER, "UnNamedPlayer" );
+	    theDriver.createPlayer( num, Player.PlayerType.LOCALPLAYER, "UnNamedPlayer" );
 	}
     }
 

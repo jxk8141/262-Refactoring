@@ -136,13 +136,13 @@ public class Driver {
      * @param name the name of the player
      * @param num  the player's number
      */
-    public void createPlayer(int num, int type, String name) {
+    public void createPlayer(int num, Player.PlayerType type, String name) {
         Player temp = null;
 
-        if (type == Player.LOCALPLAYER) {
+        if (type == Player.PlayerType.LOCALPLAYER) {
             temp = new LocalPlayer(num, rules, this);
             temp.setName(name);
-        } else if (type == Player.NETWORKPLAYER) {
+        } else if (type == Player.PlayerType.NETWORKPLAYER) {
             temp = new NetworkPlayer(num, rules, this);
             temp.setName(name);
         }

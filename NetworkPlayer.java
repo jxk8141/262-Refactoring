@@ -69,8 +69,14 @@ public class NetworkPlayer extends Player {
 
     	// call super classes (player) constructor to give it starting info
     	super( playerNum, rules, theDriver );
-        type = Player.NETWORKPLAYER;
+        type = Player.PlayerType.NETWORKPLAYER;
     	// set values to correct initial state
+   }
+
+   public NetworkPlayer(Builder builder){
+       super( builder.getNum(), builder.getRules(), builder.getDriver());
+       type = PlayerType.NETWORKPLAYER;
+
    }
 
     

@@ -22,10 +22,11 @@ import java.awt.*;
 */
 
 public abstract class Player {
-    
-    public static int LOCALPLAYER   = 0;
-    public static int NETWORKPLAYER = 1;
-    
+
+    public enum PlayerType {
+        LOCALPLAYER, NETWORKPLAYER;
+    }
+
     // Instance of the rules class which will be used to
     // validate moves and check for game ending conditions
     // once a move has been made.
@@ -40,7 +41,7 @@ public abstract class Player {
     protected int    playerNumber;
     protected String playerName;
     protected Color  playerColor;
-    protected int    type;
+    protected PlayerType type;
     
     /**
      * Create a new instance of a Player object to represent
@@ -63,7 +64,7 @@ public abstract class Player {
      *
      * @return The type of player.
      */
-    public int getType() {
+    public PlayerType getType() {
 	return type;
     }
     

@@ -29,8 +29,13 @@ public class LocalPlayer extends Player {
      */
     public LocalPlayer( int num, Rules rules, Driver theDriver ){
 	super( num, rules, theDriver );
-	type = Player.LOCALPLAYER;
+	type = Player.PlayerType.LOCALPLAYER;
     }
+
+    public LocalPlayer(Builder builder){
+		super( builder.getNum(), builder.getRules(), builder.getDriver());
+		type = PlayerType.LOCALPLAYER;
+	}
     
     /**
      * When the current player clicks the draw button, this method 
