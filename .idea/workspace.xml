@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ea80e81-562f-4149-b32f-ca6f5bc715dc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/262-Refactoring/Driver.class" afterPath="$PROJECT_DIR$/out/production/262-Refactoring/Driver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/262-Refactoring/Network.class" afterPath="$PROJECT_DIR$/out/production/262-Refactoring/Network.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Driver.java" afterPath="$PROJECT_DIR$/Driver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Network.java" afterPath="$PROJECT_DIR$/Network.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,13 +50,15 @@
       <file leaf-file-name="Driver.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Driver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1013">
-              <caret line="29" column="21" lean-forward="false" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+            <state relative-caret-position="388">
+              <caret line="53" column="8" lean-forward="false" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
               <folding>
-                <element signature="e#11178#11179#0" expanded="true" />
-                <element signature="e#11213#11214#0" expanded="true" />
-                <element signature="e#11755#11756#0" expanded="true" />
-                <element signature="e#11786#11787#0" expanded="true" />
+                <element signature="e#1475#1476#0" expanded="true" />
+                <element signature="e#1509#1510#0" expanded="true" />
+                <element signature="e#11060#11061#0" expanded="true" />
+                <element signature="e#11095#11096#0" expanded="true" />
+                <element signature="e#11637#11638#0" expanded="true" />
+                <element signature="e#11668#11669#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,8 +109,8 @@
         <option value="$PROJECT_DIR$/Secondscreen.java" />
         <option value="$PROJECT_DIR$/TestingKernel.java" />
         <option value="$PROJECT_DIR$/Facade.java" />
-        <option value="$PROJECT_DIR$/Driver.java" />
         <option value="$PROJECT_DIR$/Network.java" />
+        <option value="$PROJECT_DIR$/Driver.java" />
       </list>
     </option>
   </component>
@@ -293,12 +291,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1512431673539</updated>
-      <workItem from="1512431675047" duration="4609000" />
+      <workItem from="1512431675047" duration="4773000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4609000" />
+    <option name="totallyTimeSpent" value="4773000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="947" extended-state="0" />
@@ -452,13 +450,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Driver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1013">
-          <caret line="29" column="21" lean-forward="false" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+        <state relative-caret-position="388">
+          <caret line="53" column="8" lean-forward="false" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
           <folding>
-            <element signature="e#11178#11179#0" expanded="true" />
-            <element signature="e#11213#11214#0" expanded="true" />
-            <element signature="e#11755#11756#0" expanded="true" />
-            <element signature="e#11786#11787#0" expanded="true" />
+            <element signature="e#1475#1476#0" expanded="true" />
+            <element signature="e#1509#1510#0" expanded="true" />
+            <element signature="e#11060#11061#0" expanded="true" />
+            <element signature="e#11095#11096#0" expanded="true" />
+            <element signature="e#11637#11638#0" expanded="true" />
+            <element signature="e#11668#11669#0" expanded="true" />
           </folding>
         </state>
       </provider>

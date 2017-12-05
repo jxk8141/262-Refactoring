@@ -35,8 +35,8 @@ public class Driver {
     private Player passivePlayer;
     private boolean runningTimer;
     private Timer theTimer;
-    private Facade theFacade;
-    private Rules theRules;
+    private Facade facade;
+    private Rules rules;
     private Network network;
 
     /**
@@ -49,13 +49,9 @@ public class Driver {
         // Create the board
         Board theBoard = new Board();
 
-        // Create the rules passing in the board
-        theRules = new Rules(theBoard, this);
-
-        // Create the facade and GUI
-        theFacade = new Facade(theBoard, this);
-
-        this.network = new Network(this);
+        rules = new Rules(theBoard, this);
+        facade = new Facade(theBoard, this);
+        network = new Network(this);
     }
 
     /**
@@ -64,7 +60,7 @@ public class Driver {
      * @return A facade to talk to the GUI.
      */
     public Facade getFacade() {
-        return theFacade;
+        return this.facade;
     }
 
     /**
@@ -99,7 +95,7 @@ public class Driver {
                         JOptionPane.INFORMATION_MESSAGE);
 
                 // Get the GUI to update
-                theFacade.setPlayerModes(activePlayer, passivePlayer);
+                facade.setPlayerModes(activePlayer, passivePlayer);
 
                 // If game is networked tell networked player to send
                 // the move
@@ -117,7 +113,7 @@ public class Driver {
             activePlayer = passivePlayer;
             passivePlayer = tempHold;
 
-            theFacade.setPlayerModes(activePlayer, passivePlayer);
+            facade.setPlayerModes(activePlayer, passivePlayer);
         }
 
     }
@@ -157,10 +153,10 @@ public class Driver {
         Player temp = null;
 
         if (type == Player.LOCALPLAYER) {
-            temp = new LocalPlayer(num, theRules, this);
+            temp = new LocalPlayer(num, rules, this);
             temp.setName(name);
         } else if (type == Player.NETWORKPLAYER) {
-            temp = new NetworkPlayer(num, theRules, this);
+            temp = new NetworkPlayer(num, rules, this);
             temp.setName(name);
         }
 
@@ -320,7 +316,7 @@ public class Driver {
             passivePlayer = playerOne;
         }
 
-        theFacade.setPlayerModes(activePlayer, passivePlayer);
+        facade.setPlayerModes(activePlayer, passivePlayer);
     }
 
     /**
