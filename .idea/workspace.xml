@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ea80e81-562f-4149-b32f-ca6f5bc715dc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/262-Refactoring/CheckerGUI$1.class" afterPath="$PROJECT_DIR$/out/production/262-Refactoring/CheckerGUI$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/262-Refactoring/CheckerGUI.class" afterPath="$PROJECT_DIR$/out/production/262-Refactoring/CheckerGUI.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Network.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Driver.java" afterPath="$PROJECT_DIR$/Driver.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,22 +49,44 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Driver.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Driver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="413" column="5" lean-forward="false" selection-start-line="413" selection-start-column="5" selection-end-line="413" selection-end-column="5" />
+              <folding>
+                <element signature="e#11551#11552#0" expanded="true" />
+                <element signature="e#11586#11587#0" expanded="true" />
+                <element signature="e#12128#12129#0" expanded="true" />
+                <element signature="e#12159#12160#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state relative-caret-position="-14">
+              <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Facade.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Facade.java">
+      <file leaf-file-name="Network.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Network.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="32" column="4" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
-              <folding />
+            <state relative-caret-position="310">
+              <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+              <folding>
+                <element signature="e#85#86#0" expanded="true" />
+                <element signature="e#121#122#0" expanded="true" />
+                <element signature="e#512#513#0" expanded="true" />
+                <element signature="e#568#569#0" expanded="true" />
+                <element signature="e#620#621#0" expanded="true" />
+                <element signature="e#675#676#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,6 +105,10 @@
       <find>gameType</find>
       <find>sta</find>
       <find>Game</find>
+      <find>activePlayer</find>
+      <find>st</find>
+      <find>start</find>
+      <find>host</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -96,12 +122,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Network.java" />
-        <option value="$PROJECT_DIR$/Driver.java" />
         <option value="$PROJECT_DIR$/Firstscreen.java" />
         <option value="$PROJECT_DIR$/Secondscreen.java" />
         <option value="$PROJECT_DIR$/TestingKernel.java" />
         <option value="$PROJECT_DIR$/Facade.java" />
+        <option value="$PROJECT_DIR$/Driver.java" />
+        <option value="$PROJECT_DIR$/Network.java" />
       </list>
     </option>
   </component>
@@ -282,15 +308,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1512431673539</updated>
-      <workItem from="1512431675047" duration="2028000" />
+      <workItem from="1512431675047" duration="3704000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2028000" />
+    <option name="totallyTimeSpent" value="3704000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="947" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -305,7 +332,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298122" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24969475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24969475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298122" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -332,14 +359,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Network.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Piece.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -352,14 +371,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="25" column="12" lean-forward="false" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Driver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5801">
-          <caret line="69" column="29" lean-forward="true" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -388,25 +399,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Firstscreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="231" column="26" lean-forward="false" selection-start-line="231" selection-start-column="23" selection-end-line="231" selection-end-column="35" />
-          <folding>
-            <element signature="e#1820#1983#0" expanded="true" />
-            <element signature="e#1982#1983#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PlayCheckers.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
@@ -423,6 +415,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Facade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="63" column="46" lean-forward="false" selection-start-line="63" selection-start-column="46" selection-end-line="63" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-14">
+          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Secondscreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -431,11 +439,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Facade.java">
+    <entry file="file://$PROJECT_DIR$/Firstscreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="32" column="4" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
-          <folding />
+        <state relative-caret-position="55">
+          <caret line="231" column="26" lean-forward="false" selection-start-line="231" selection-start-column="23" selection-end-line="231" selection-end-column="35" />
+          <folding>
+            <element signature="e#1820#1983#0" expanded="true" />
+            <element signature="e#1982#1983#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Network.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+          <folding>
+            <element signature="e#85#86#0" expanded="true" />
+            <element signature="e#121#122#0" expanded="true" />
+            <element signature="e#512#513#0" expanded="true" />
+            <element signature="e#568#569#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#675#676#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Driver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="413" column="5" lean-forward="false" selection-start-line="413" selection-start-column="5" selection-end-line="413" selection-end-column="5" />
+          <folding>
+            <element signature="e#11551#11552#0" expanded="true" />
+            <element signature="e#11586#11587#0" expanded="true" />
+            <element signature="e#12128#12129#0" expanded="true" />
+            <element signature="e#12159#12160#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
