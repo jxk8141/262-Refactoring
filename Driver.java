@@ -28,7 +28,6 @@ import javax.swing.*;
  */
 
 public class Driver {
-
     private Player playerOne;
     private Player playerTwo;
     private Facade.GameType gameType;
@@ -104,18 +103,11 @@ public class Driver {
 
                 // If game is networked tell networked player to send
                 // the move
-                if (gameType == Facade.GameType.HOST_GAME
-                        || gameType == Facade.GameType.CLIENT_GAME) {
-                    ((NetworkPlayer) activePlayer).sendMove();
-                }
+                network.sendMove(activePlayer);
             }
         } else if (passivePlayer == player) {
             // If game is networked, tell networked player to send move
-            if (gameType == Facade.GameType.HOST_GAME
-                    || gameType == Facade.GameType.CLIENT_GAME) {
-                ((NetworkPlayer) activePlayer).sendMove();
-                ((NetworkPlayer) activePlayer).waitForPlayer();
-            }
+            network.askForMove(activePlayer);
 
             // Inform the other player to make a move and
             // tell facade to update any listining GUIs and
